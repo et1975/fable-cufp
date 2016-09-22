@@ -12,4 +12,3 @@
 
 * Structure and Interpretation of Computer Programs
 * How to Design Programs
- 

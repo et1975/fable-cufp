@@ -296,7 +296,9 @@ type MyStrings =
 
 [<KeyValueList>]
 type MyOptions =
-    | Flag1 | Name of string | [<CompiledName("QTY")>] QTY of int
+    | Flag1
+    | Name of string
+    | [<CompiledName("QTY")>] QTY of int
 ```
 
 
@@ -329,7 +331,9 @@ Fable itself has been developed with VS Code + Ionide!
 ---
 
 
-Source code by @hoonzis available on [Github](https://github.com/hoonzis/Pricer).
+Source code by @hoonzis available on Github
+
+[github.com/hoonzis/Pricer](https://github.com/hoonzis/Pricer)
 
 
 ---
@@ -354,7 +358,8 @@ Learn more in [Tomas Petricek's blog](http://tomasp.net/blog/2016/thegamma-olymp
 
 ### FABLE IN NUMBERS
 
-- Currently in beta: [v0.6.5](https://www.npmjs.com/package/fable-compiler) (soon v1.0.0)
+- Currently in beta: [v0.6.7](https://www.npmjs.com/package/fable-compiler) (soon v1.0.0)
+- 6 months since release
 - >800 [unit tests](https://github.com/fsprojects/Fable/tree/master/src/tests)
 - >800 commits, >500 stars, 37 contributors
 - 25 packages in [npm](https://www.npmjs.com/~alfonsogarciacaro): compiler, core lib, bindings, TypeScript parser
