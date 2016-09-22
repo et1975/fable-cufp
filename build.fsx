@@ -120,11 +120,18 @@ let startWebServer () =
     startWebServerAsync serverConfig app |> snd |> Async.Start
     Process.Start (sprintf "http://localhost:%d/index.html" port) |> ignore
 
-Target "GenerateSlides" (fun _ ->
+let generateSlides() =
     !! (slidesDir + "/**/*.md")
       ++ (slidesDir + "/**/*.fsx")
     |> Seq.map fileInfo
     |> Seq.iter generateFor
+
+Target "GenerateSlides" (fun _ ->
+    generateSlides()
+)
+
+Target "RewriteSlides" (fun _ ->
+    generateSlides()
 )
 
 Target "KeepRunning" (fun _ ->

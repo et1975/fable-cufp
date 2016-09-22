@@ -1,0 +1,5 @@
+    <script src="lib/cache/jquery-1.8.0.js"></script>
+    <script src="lib/cache/jquery-ui.js"></script>
+    <script src="lib/cache/bootstrap.min.js"></script>
+    <script type="text/javascript" src="lib/cache/MathJax.js"></script>
+    <link href="lib/cache/bootstrap-combined.min.css" rel="stylesheet">
