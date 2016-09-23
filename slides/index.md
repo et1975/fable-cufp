@@ -17,6 +17,8 @@ Bringing together the F# and JS worlds
   <img style="display: inline-block;vertical-align:middle" src="images/js.png" />
 </div>
 
+[fable-compiler.github.io](http://fable-compiler.github.io)
+
 ---
 
 
@@ -307,9 +309,10 @@ type MyOptions =
 
 ### MADE WITH FABLE: [IONIDE](http://ionide.io/)
 
-F# Extension for VS Code and Atom
 
 ![Ionide logo](images/Ionide.png)
+
+F# Extension for VS Code and Atom
 
 
 ---
@@ -325,15 +328,16 @@ Fable itself has been developed with VS Code + Ionide!
 
 ### MADE WITH FABLE: [PAYOFF CHARTS](http://www.payoffcharts.com)
 
-![Payoff charts demo](images/PayoffCharts-demo.gif)
+
+Source code by @hoonzis available on Github
+
+[github.com/hoonzis/Pricer](https://github.com/hoonzis/Pricer)
 
 
 ---
 
 
-Source code by @hoonzis available on Github
-
-[github.com/hoonzis/Pricer](https://github.com/hoonzis/Pricer)
+![Payoff charts demo](images/PayoffCharts-demo.gif)
 
 
 ---
@@ -371,7 +375,7 @@ Learn more in [Tomas Petricek's blog](http://tomasp.net/blog/2016/thegamma-olymp
 
 ### Let's start coding!
 
-http://fable-compiler.github.io
+[Workshop](https://github.com/alfonsogarciacaro/fable-cufp-workshop/)
 
 Don't forget to star the project on [GitHub](https://github.com/fable-compiler/Fable)
 and join the [F# Software Foundation](http://foundation.fsharp.org/join)!
