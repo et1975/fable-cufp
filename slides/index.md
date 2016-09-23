@@ -373,6 +373,8 @@ Learn more in [Tomas Petricek's blog](http://tomasp.net/blog/2016/thegamma-olymp
 
 http://fable-compiler.github.io
 
+[CUFP workshop](https://github.com/alfonsogarciacaro/fable-cufp-workshop/tree/master/todomvc-fable-arch)
+
 Don't forget to star the project on [GitHub](https://github.com/fable-compiler/Fable)
 and join the [F# Software Foundation](http://foundation.fsharp.org/join)!
 
