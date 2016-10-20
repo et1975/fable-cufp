@@ -9,10 +9,10 @@
 
 // Git configuration (used for publishing documentation in gh-pages branch)
 // The profile where the project is posted
-let gitOwner = "alfonsogarciacaro"
+let gitOwner = "et1975"
 let gitHome = "https://github.com/" + gitOwner
 // The name of the project on GitHub
-let gitProjectName = "fable-cufp"
+let gitProjectName = "fable-reactnative"
 
 open FsReveal
 open Fake
@@ -122,7 +122,6 @@ let startWebServer () =
 
 let generateSlides() =
     !! (slidesDir + "/**/*.md")
-      ++ (slidesDir + "/**/*.fsx")
     |> Seq.map fileInfo
     |> Seq.iter generateFor
 
@@ -134,7 +133,7 @@ Target "RewriteSlides" (fun _ ->
     generateSlides()
 )
 
-Target "KeepRunning" (fun _ ->
+Target "Watch" (fun _ ->
     use watcher = !! (slidesDir + "/**/*.*") |> WatchChanges handleWatcherEvents
     
     startWebServer ()
@@ -162,9 +161,9 @@ Target "ReleaseSlides" (fun _ ->
 
 "Clean"
   ==> "GenerateSlides"
-  ==> "KeepRunning"
+  ==> "Watch"
 
 "GenerateSlides"
   ==> "ReleaseSlides"
   
-RunTargetOrDefault "KeepRunning"
+RunTargetOrDefault "Watch"
