@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Writing ReactNative applications with Fable</title>
-    <meta name="description" content="Introduction to Fable and ReactNative">
+    <title>Writing React and ReactNative applications with Fable</title>
+    <meta name="description" content="Introduction to F#, Fable and React/Native">
     <meta name="author" content="Eugene Tolmachev">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -46,259 +46,231 @@
 </head>
 <body>
     <div class="reveal">
-        <div class="tip" id="fs1">val ( Util.reverse works ) : unit -&gt; &#39;a<br /><br />Full name: index.( Util.reverse works )</div>
-<div class="tip" id="fs2">val res : obj</div>
+        <div class="tip" id="fs1">val doSomething : g:(int -&gt; string) -&gt; x:int -&gt; string<br /><br />Full name: index.doSomething</div>
+<div class="tip" id="fs2">val g : (int -&gt; string)</div>
+<div class="tip" id="fs3">val x : int</div>
+<div class="tip" id="fs4">val y : string</div>
 
         <!-- Any section element inside of this container is displayed as a slide -->
         <div class="slides">
             <section >
 <section >
-<h3>Writing ReactNative applications with Fable</h3>
-<p>Bringing together the F# and Native via JS ecosystem</p>
+<h3>Writing React and ReactNative applications with F#</h3>
 <div>
-  <img style="display: inline-block;vertical-align:middle;border-style=none" height="150px" width="150px" src="images/fsharp.png" />
+  <img style="display: inline-block;vertical-align:middle" height="150px" width="150px" src="images/fsharp.png" />
   <span style="white-space: pre">   meets   </span>
-  <img style="display: inline-block;vertical-align:middle;border-style=none" height="150px" width="150px" src="images/react-native.png" />
+  <img style="display: inline-block;vertical-align:middle" height="150px" width="150px" src="images/react.png" />
+  <span style="white-space: pre">   and   </span>
+  <img style="display: inline-block;vertical-align:middle" height="150px" width="150px" src="images/react-native.png" />
 </div>
 <p><a href="http://fable.io">fable.io</a></p>
 </section>
 <section >
-<h3>ABOUT</h3>
-<p>Speaker: Eugene Tolmachev</p>
+<h3>About</h3>
+<div>
+  <img style="vertical-align:middle" height="64px" width="64px" src="images/pro.jpeg" />
+  Eugene Tolmachev
+</div>
 <ul>
 <li>Building software for over 20 years</li>
-<li>Author of several OSS projects, including fable-elmish and FsShelter</li>
-<li>A principal architect @ Prolucid</li>
-</ul>
-<p>Prolucid</p>
-<ul>
-<li>
-provides expertise in custom software development for mission critical 
-embedded, vision and cloud enabled applications.
-</li>
-<li>a sponsoring member of F# Foundation</li>
-<li>F#unctional Toronto meetup sponsor</li>
-<li>OSS sponsor of fable-elmish, FsStorm, FsShelter and many more</li>
+<li>A principal architect at <a href="https://prolucid.ca"><img style="vertical-align:middle" width="30pt" src="images/prolucid.ico"> prolucid</img></a></li>
+<li>Author and contributor of several OSS projects, including Elmish</li>
 </ul>
 </section>
 </section>
 <section >
-<h3>FABLE AT GLANCE</h3>
+<section >
+<h3>F# at glance</h3>
+<div>
+  <img style="display: inline-block;vertical-align:middle" height="150px" width="150px" src="images/fsharp.png" />
+</div>
+<p>F# is a mature, open source, cross-platform, functional-first programming language:</p>
 <ul>
-<li>Compiles F# source code to JavaScript</li>
-<li>Powered by the <a href="http://fsharp.github.io/FSharp.Compiler.Service/">F# compiler</a> and <a href="http://babeljs.io">Babel</a></li>
-<li>Compatible with <a href="http://fable-compiler.github.io/docs/compatibility.html">most of FSharp.Core and some .NET BCL</a></li>
-<li>Source maps for F# code debugging</li>
-<li>No runtime, framework agnostic (fable-core is just a library)</li>
-<li>Runs on Web, Node, Desktop (Electron) and Mobile (React Native, Fuse) apps</li>
-<li>Extensible through <a href="http://fable-compiler.github.io/docs/plugins.html">plugins</a></li>
-<li>Young but growing <a href="https://www.github.com/fable-compiler">ecosystem</a> (<a href="https://www.npmjs.com/search?q=fable">packages available in npm</a>)</li>
+<li>Type inference and syntax similar to the rest of ML familiy of languages (SML, OCaml)</li>
+<li>Interoperates with all .NET languages and libraries</li>
+<li>Great editor support (VS/Mac, VSCode+Ionide, Rider, Emacs, Vim)</li>
 </ul>
-<blockquote>
-<p><a href="https://www.npmjs.com/package/fable-core">fable-core</a> is just 20KB gzipped</p>
-</blockquote>
 </section>
 <section >
-<section >
-<h3>FABLE COMPATIBILITY WITH F#</h3>
+<h3>F# - distinguishing features</h3>
 <ul>
-<li>Records, Unions and Tuples</li>
-<li>Structural Equality and Comparison</li>
+<li>Immutable and non-nullable by default</li>
+<li>ADTs, Records and tuples with Structural Equality</li>
+<li>Pattern Matching</li>
+<li>Units of measure</li>
 <li>Comprehensions (seq, array, list)</li>
 <li>Computation Expressions</li>
-<li>Pattern Matching and Active Patterns</li>
 <li>Object Expressions</li>
-<li>Units of Measure</li>
-<li>Type Providers (must be written for Fable)</li>
 </ul>
-<p>Check the <a href="http://fable-compiler.github.io/docs/compatibility.html">documentation</a> for more info</p>
 </section>
 <section >
-<h3>HELLO WORLD!</h3>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
-<span class="l">4: </span>
-<span class="l">5: </span>
-<span class="l">6: </span>
-<span class="l">7: </span>
-<span class="l">8: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="shell">mkdir temp
-cd temp
-npm init --yes
-npm install -g fable-compiler
-npm install --save fable-core
-echo "printfn \"Hello World!\"" &gt; hello.fsx
-fable hello.fsx
-node hello.js
-</code></pre></td></tr></table>
-</section>
-</section>
-<section >
-<h3><a href="https://github.com/fsprojects/Fable/blob/master/docs/compiling.md#fableconfigjson">fableconfig.json</a></h3>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
-<span class="l"> 2: </span>
-<span class="l"> 3: </span>
-<span class="l"> 4: </span>
-<span class="l"> 5: </span>
-<span class="l"> 6: </span>
-<span class="l"> 7: </span>
-<span class="l"> 8: </span>
-<span class="l"> 9: </span>
-<span class="l">10: </span>
-<span class="l">11: </span>
-<span class="l">12: </span>
-<span class="l">13: </span>
-<span class="l">14: </span>
-<span class="l">15: </span>
-<span class="l">16: </span>
-<span class="l">17: </span>
-<span class="l">18: </span>
-<span class="l">19: </span>
-<span class="l">20: </span>
-<span class="l">21: </span>
-<span class="l">22: </span>
-</pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="json">{
-    "module": "commonjs",
-    "outDir": "out",
-    "sourceMaps": true,
-    "projFile": "src/Fable.Samples.React.fsproj",
-    "scripts": {
-        "prebuild": "npm install",
-        "postbuild": "node node_modules/webpack/bin/webpack"
-    },
-    "targets": {
-        "debug": {
-            "watch": true,
-            "symbols": ["DEV_SERVER"],
-            "scripts": { "postbuild": "" }
-        },
-        "production": {
-            "scripts": {
-                "postbuild": "node node_modules/webpack/bin/webpack -p"
-            }
-        }
-    }
-}
-</code></pre></td></tr></table>
-</section>
-<section >
-<section >
-<h3>TESTING</h3>
-<p>NUnit or Visual Studio tests can be compiled to JS too</p>
-<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
-<span class="l">2: </span>
-<span class="l">3: </span>
-<span class="l">4: </span>
-<span class="l">5: </span>
-<span class="l">6: </span>
-<span class="l">7: </span>
-<span class="l">8: </span>
-<span class="l">9: </span>
-</pre></td>
-<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="prep">#r</span> <span class="s">&quot;../../../packages/NUnit/lib/nunit.framework.dll&quot;</span>
-<span class="prep">#load</span> <span class="s">&quot;util/util.fs&quot;</span>
-
-<span class="k">open</span> <span class="i">NUnit</span><span class="o">.</span><span class="i">Framework</span>
-
-[&lt;<span class="i">Test</span>&gt;]
-<span class="k">let</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="f">``Util.reverse works``</span>() <span class="o">=</span>
-    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="i">res</span> <span class="o">=</span> <span class="i">Util</span><span class="o">.</span><span class="i">reverse</span> <span class="s">&quot;araN&quot;</span>
-    <span class="i">Assert</span><span class="o">.</span><span class="i">AreEqual</span>(<span class="s">&quot;Nara&quot;</span>, <span onmouseout="hideTip(event, 'fs2', 3)" onmouseover="showTip(event, 'fs2', 3)" class="i">res</span>)
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="f">doSomething</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="f">g</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">x</span> <span class="o">=</span> 
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="i">y</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs2', 5)" onmouseover="showTip(event, 'fs2', 5)" class="f">g</span> (<span onmouseout="hideTip(event, 'fs3', 6)" onmouseover="showTip(event, 'fs3', 6)" class="i">x</span> <span class="o">+</span> <span class="n">1</span>) <span class="c">// `x` must be an `int`!</span>
+    <span class="s">&quot;hello&quot;</span> <span class="o">+</span> <span onmouseout="hideTip(event, 'fs4', 7)" onmouseover="showTip(event, 'fs4', 7)" class="i">y</span> <span class="c">// `y` must be a `string`</span>
 </code></pre></td>
 </tr>
 </table>
 </section>
 <section >
-<p>Compile the tests using NUnit plugin and run them with Mocha</p>
+<h3>Typical satellites in an F# projects</h3>
+<div style="float:left; text-align:left">
+  <div style="float:left; padding:10px">
+  <img height="150px" width="150px" src="https://github.com/fsprojects/Paket/raw/master/docs/files/img/logo.png" /></div>
+<p>
+<strong>Paket</strong> is an alternative NuGet client, it provides additional features, like reproducible builds, groups, non-nuget dependencies and `why` analsys. 
+</p>
+</div>
+<div style="float:left; text-align:left">
+  <div style="float:left; padding:10px">
+  <img height="150px" width="150px" src="https://github.com/fsharp/FAKE/raw/release/next/help/pics/logo.png" />
+</div>
+<p><strong>Fake</strong> is a build automation tool, like Make and Rake. It is a single point of entry into entire build process, it lets one use F# to script the build and has a library of common tasks.</p>
+</div>
+</section>
+</section>
+<section >
+<section >
+<h3>Fable at glance</h3>
+<div>
+  <img style="display: inline-block" height="150px" width="150px" src="images/fable.png" />
+</div>
+<ul>
+<li>Compiles F# source code to JavaScript</li>
+<li>Powered by the <a href="http://fsharp.github.io/FSharp.Compiler.Service/">F# compiler</a> and <a href="http://babeljs.io">Babel</a></li>
+</ul>
+<div>
+  <img style="display: inline-block;vertical-align:middle" width="350px" src="images/ast1.png" />
+  <span style="white-space: pre">   with Fable   </span>
+  <img style="display: inline-block;vertical-align:middle" width="350px" src="images/ast2.png" />
+</div>
+</section>
+<section >
+<h3>Fable</h3>
+<ul>
+<li>Compatible with <a href="http://fable.io/docs/compatibility.html">most of FSharp.Core and some .NET BCL</a></li>
+<li>Source maps for F# code debugging</li>
+<li>Constantly growing ecosystem (<a href="https://www.nuget.org/packages?q=fable">packages available on nuget</a>)</li>
+<li>F# compiler itself is compiled to JavaScript and runs the <a href="http://fable.io/repl/">REPL</a></li>
+<li>Checkout <a href="https://github.com/kunjee17/awesome-fable">Fable-Awesome</a> for tutorials, libraries and samples</li>
+</ul>
+</section>
+<section >
+<h3>Getting started</h3>
 <table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
 <span class="l">2: </span>
 <span class="l">3: </span>
 <span class="l">4: </span>
 <span class="l">5: </span>
+<span class="l">6: </span>
+<span class="l">7: </span>
 </pre></td>
-<td class="snippet"><pre class="fssnip"><code lang="text">fable samples/node/console/tests.fsx -m commonjs
-    --outDir out --plugins build/plugins/Fable.Plugins.NUnit.dll
-
-node build/tests/node_modules/mocha/bin/mocha
-    samples/node/console/out/tests.js
+<td class="snippet"><pre class="fssnip"><code lang="shell">dotnet new -i Fable.Template.Elmish.React
+dotnet new fable-elmish-react -n AwesomeApp --yarn
+cd AwesomeApp
+yarn
+dotnet restore
+cd src
+dotnet fable yarn-start
 </code></pre></td></tr></table>
 </section>
 </section>
 <section >
-<h3>INTERACTING WITH JS</h3>
-<p>Fable takes advantage of JS ecosytem's full potential.</p>
-<p class="fragment fade-in">
-Because Functional Programming is <strong>fantastic</strong>
-</p>
-<p class="fragment fade-in">
-and JS ecosystem is...
-</p>
-<p class="fragment fade-in" style="font-size: 6em">
-<strong>HUGE</strong>
-</p>
+<section >
+<h3>React and ReactNative</h3>
+<div style="float:left; text-align:left">
+  <div style="float:left; padding:10px">
+  <img width="150px" height="150px" src="images/react.png"/></div>
+  <p>Declare views for each state in your SPA, and React will efficiently update and render just the right components when your data changes.</p>
+</div>
+<div style="float:left; text-align:left">
+  <div style="float:left; padding:10px">
+  <img width="150px" height="150px" src="images/react-native.png" />
+  </div>
+  <p>With React Native, you don't build a “mobile web app”, an “HTML5 app”, or a “hybrid app”.
+You build a real platform-specific app that's indistinguishable from an app built using C#, Objective-C or Java. </p>
+<blockquote>
+<p>React Native uses the same fundamental UI building blocks as regular Windows, OSX, iOS and Android apps.
+</div></p>
+</blockquote>
 </section>
 <section >
-<section >
-<h3>MADE WITH FABLE: <a href="http://ionide.io/">IONIDE</a></h3>
-<p><img src="images/Ionide.png" alt="Ionide logo" /></p>
-<p>F# Extension for VS Code and Atom</p>
+<h3>React - reconciliation</h3>
+<p><img src="images/react-dom.png" alt="DIFF" /></p>
 </section>
 <section >
-<p><img src="images/Ionide-demo.gif" alt="Ionide demo" /></p>
-<p>Fable itself has been developed with VS Code + Ionide!</p>
-</section>
-<section >
-<h3>FABLE IN NUMBERS</h3>
+<h3>Taking advantage of React ecosystem</h3>
 <ul>
-<li>Currently in beta: <a href="https://www.npmjs.com/package/fable-compiler">v0.6.x</a> (soon v1.0.0)</li>
-<li>6 months since release</li>
-<li>&gt;800 <a href="https://github.com/fsprojects/Fable/tree/master/src/tests">unit tests</a></li>
-<li>&gt;800 commits, &gt;500 stars, 37 contributors</li>
-<li>25 packages in <a href="https://www.npmjs.com/~alfonsogarciacaro">npm</a>: compiler, core lib, bindings, TypeScript parser</li>
-<li>5000 downloads last month</li>
+<li>Server-side rendering</br></li>
+<li>
+All React and ReactNative tooling:</br> 
+Browser plugins, native CLI, VSCode integration
+</li>
+<li>
+All React and ReactNative libraries:</br>
+Available via "binding" libraries or direct JS interop:
+<ul>
+<li>Look and feel (react-toolkit, ant-design)</li>
+<li>Microsoft ReactXP (share UI across SPA and Native)</li>
+<li>Notifications, Maps, Charts, etc</li>
+<li>Native platform peripherals (camera, scanners, etc)</li>
+<li>and much more</li>
+</ul>
+</li>
+</ul>
+<div style="text-align: right">
+<br /><small>
+for details see <a href="https://github.com/fable-compiler/fable-react/blob/master/docs/using-third-party-react-components.md">Using 3rd party React components</a>
+</small></div>
+</section>
+</section>
+<section >
+<section >
+<h3>Elm(ish)</h3>
+<div>
+  <img style="display: inline-block;vertical-align:middle" height="150px" width="150px" src="images/elmish.png" />
+</div>
+A library for writing F# applications following "model-view-update" pattern, as made famous by Elm.
+<p><img src="https://www.elm-tutorial.org/en/02-elm-arch/04-flow.png" alt="Elm overview" /></p>
+</section>
+<section >
+<h3>Elmish app with child components</h3>
+<p><img src="https://www.elm-tutorial.org/en/03-subs-cmds/02-commands.png" alt="Composition" /></p>
+</section>
+<section >
+<h3>Elmish ecosystem</h3>
+<ul>
+<li><p><a href="https://elmish.github.io">Documentation</a>, Templates, Samples!</p></li>
+<li>React/Native support</li>
+<li>Time-travelling Debugger</li>
+<li>Hot Module Replacement</li>
+<li>Browser support (Routing and Navigation)</li>
+<li>Websockets</li>
+<li>Remoting</li>
+</ul>
+<div style="text-align:right">...and much more!<br/>Offshots:</div>
+<ul>
+<li>WPF and Xamarin ports</li>
+<li>A C# port</li>
 </ul>
 </section>
 </section>
 <section >
-<section >
-<h3>REACT-NATIVE</h3>
-<p><img src="https://facebook.github.io/react-native/img/header_logo.png" alt="ReactNative logo" /></p>
-<p>With React Native, you don't build a “mobile web app”, an “HTML5 app”, or a “hybrid app”.
-You build a real mobile app that's indistinguishable from an app built using Objective-C or Java.</p>
-<blockquote>
-<p>React Native uses the same fundamental UI building blocks as regular iOS and Android apps.</p>
-</blockquote>
-</section>
-<section >
-<h3>REACT-NATIVE DEMO</h3>
-<p>See effect of your code changes right away!</p>
-<p><img src="images/react-native.gif" alt="ReactNative demo" /></p>
-</section>
-</section>
-<section >
-<h3>ELM(ISH)</h3>
-<p>A library for writing F# applications following "model-view-update" pattern, as made famous by Elm.</p>
-<p><img src="https://www.elm-tutorial.org/en/02-elm-arch/04-flow.png" alt="Elm overview" /></p>
-<blockquote>
-<p>This pattern provides a way of creating self contained components that can be
-reused, combined, and composed in endless variety.</p>
-</blockquote>
-</section>
-<section >
-<h3>Let's start coding!</h3>
-<p><a href="https://github.com/et1975/fable-reactnative-workshop/">Workshop code</a></p>
+<h3>Let's see some code!</h3>
 <p>Don't forget to star the projects on GitHub:</p>
-<p><a href="https://github.com/fable-compiler/Fable">Fable</a> | <a href="https://github.com/fable-compiler/fable-elmish">Elmish</a></p>
+<p><a href="https://github.com/fable-compiler/Fable">Fable</a> | <a href="https://github.com/elmish/elmish">Elmish</a></p>
 <p>and join the <a href="http://foundation.fsharp.org/join">F# Software Foundation</a>!</p>
 <p><div style="text-align: right">
 <p>Follow on Twitter:</p>
 <p><a href="https://twitter.com/FSharporg">@fsharporg</a></p>
 <p><a href="https://twitter.com/FableCompiler">@FableCompiler</a></p>
-<p><a href="https://twitter.com/prolucid">@prolucid</a></p>
 </div></p>
+<div style="text-align: left">
+For a full-stack F# example checkout <a href="https://github.com/SAFE-stack">SAFE-stack</a>
+</div>
 </section>
 
 

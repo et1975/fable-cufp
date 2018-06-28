@@ -5,3 +5,8 @@
 strong {
     color: red
 }
+
+.reveal section img {
+    border: 0px;
+    border-radius: 5pt
+}
